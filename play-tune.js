@@ -1,15 +1,15 @@
 const musicDivs = document.querySelectorAll(".music-div");
 
-// Add click functionality
+
 musicDivs.forEach(musicDiv => {
     musicDiv.addEventListener("click", function () {
         playMusic(this);
     });
 });
 
-// Add keydown functionality
+
 document.addEventListener("keydown", function (event) {
-    const typedLetter = event.key.toUpperCase(); // Get the typed letter (case-insensitive)
+    const typedLetter = event.key.toUpperCase(); 
     
     musicDivs.forEach(musicDiv => {
         const letter = musicDiv.querySelector(".para").textContent.trim().toUpperCase();
