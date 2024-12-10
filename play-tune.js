@@ -1,6 +1,13 @@
 const musicDivs = document.querySelectorAll(".music-div");
 
 
+const audioFiles = {};
+musicDivs.forEach(div => {
+    const path = div.getAttribute("data-music");
+    audioFiles[path] = new Audio(path);
+});
+
+
 musicDivs.forEach(musicDiv => {
     musicDiv.addEventListener("click", function () {
         playMusic(this);
@@ -21,18 +28,19 @@ document.addEventListener("keydown", function (event) {
 
 
 function playMusic(musicDiv) {
-   
-    musicDivs.forEach(div => {
-        div.classList.remove("music-div-click");
-    });
+    
+    musicDivs.forEach(div => div.classList.remove("music-div-click"));
 
-   
+
     musicDiv.classList.add("music-div-click");
 
     
     const musicPath = musicDiv.getAttribute("data-music");
 
-    
-    const audio = new Audio(musicPath);
-    audio.play();
+
+    const audio = audioFiles[musicPath];
+    if (audio) {
+        audio.currentTime = 0; 
+        audio.play();
+    }
 }
